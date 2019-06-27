@@ -224,7 +224,7 @@ void X86CondBrFolding::replaceBrDest(MachineBasicBlock *MBB,
   if (MBBInfo->TBB == OrigDest) {
     BrMI = MBBInfo->BrInstr;
     MachineInstrBuilder MIB =
-        BuildMI(*MBB, BrMI, MBB->findDebugLoc(BrMI), TII->get(X86::JCC_1))
+        BuildMI(*MBB, BrMI, MBB->findDebugLoc((llvm::MachineBasicBlock::iterator) BrMI), TII->get(X86::JCC_1))
             .addMBB(NewDest).addImm(MBBInfo->BranchCode);
     MBBInfo->TBB = NewDest;
     MBBInfo->BrInstr = MIB.getInstr();
@@ -250,7 +250,7 @@ void X86CondBrFolding::fixupModifiedCond(MachineBasicBlock *MBB) {
 
   MachineInstr *BrMI = MBBInfo->BrInstr;
   X86::CondCode CC = MBBInfo->BranchCode;
-  MachineInstrBuilder MIB = BuildMI(*MBB, BrMI, MBB->findDebugLoc(BrMI),
+  MachineInstrBuilder MIB = BuildMI(*MBB, BrMI, MBB->findDebugLoc((llvm::MachineBasicBlock::iterator) BrMI),
                                     TII->get(X86::JCC_1))
                                 .addMBB(MBBInfo->TBB).addImm(CC);
   BrMI->eraseFromParent();
