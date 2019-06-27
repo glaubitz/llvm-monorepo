@@ -270,7 +270,7 @@ bool M680x0RegisterInfo::canRealignStack(const MachineFunction &MF) const {
   return true;
 }
 
-unsigned M680x0RegisterInfo::getFrameRegister(const MachineFunction &MF) const {
+Register M680x0RegisterInfo::getFrameRegister(const MachineFunction &MF) const {
   const TargetFrameLowering *TFI = MF.getSubtarget().getFrameLowering();
   return TFI->hasFP(MF) ? FramePtr : StackPtr;
 }
