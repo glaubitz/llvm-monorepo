@@ -2051,7 +2051,7 @@ SDValue M680x0TargetLowering::EmitCmp(SDValue Op0, SDValue Op1,
     // with an immediate.  16 bit immediates are to be avoided.
     if ((Op0.getValueType() == MVT::i16 &&
          (isa<ConstantSDNode>(Op0) || isa<ConstantSDNode>(Op1))) &&
-        !DAG.getMachineFunction().getFunction().optForMinSize()) {
+          !DAG.getMachineFunction().getFunction().hasOptSize()) {
       unsigned ExtendOp =
           isM680x0CCUnsigned(M680x0CC) ? ISD::ZERO_EXTEND : ISD::SIGN_EXTEND;
       Op0 = DAG.getNode(ExtendOp, DL, MVT::i32, Op0);
