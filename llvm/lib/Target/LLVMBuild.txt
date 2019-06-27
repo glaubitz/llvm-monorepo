@@ -19,6 +19,7 @@
 [common]
 subdirectories =
  AMDGPU
+ Alpha
  ARC
  ARM
  AArch64

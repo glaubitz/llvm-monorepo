@@ -1085,6 +1085,8 @@ StringRef ELFObjectFile<ELFT>::getFileFormatName() const {
       return "ELF64-i386";
     case ELF::EM_X86_64:
       return "ELF64-x86-64";
+    case ELF::EM_ALPHA:
+      return "ELF64-alpha";
     case ELF::EM_AARCH64:
       return (IsLittleEndian ? "ELF64-aarch64-little" : "ELF64-aarch64-big");
     case ELF::EM_PPC64:
